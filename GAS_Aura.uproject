@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.3",
+	"EngineAssociation": "{486AB0EE-458E-9D18-03C7-BBB6A6AEBE15}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "GAS_Aura",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	],
 	"Plugins": [
