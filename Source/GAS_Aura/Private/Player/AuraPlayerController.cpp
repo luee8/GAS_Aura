@@ -84,8 +84,10 @@ void AAuraPlayerController::BeginPlay()
 	
 	//LocalPlayer存在于 UGameInstance 中,跨关卡长存,因此不用多次配置IMC
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
-	Subsystem->AddMappingContext(AuraContext,0); //第二个参数是优先级，由于区分在输入冲突时判断优先级
+	if (Subsystem)
+	{
+		Subsystem->AddMappingContext(AuraContext,0); //第二个参数是优先级，由于区分在输入冲突时判断优先级
+	}
 	
 	/*步骤：
 	①准备阶段 (Setup)：
