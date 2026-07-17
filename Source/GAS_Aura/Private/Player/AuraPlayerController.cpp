@@ -30,7 +30,7 @@ void AAuraPlayerController::CursorTance()
 		return;
 	
 	LastActor = ThisActor;
-	ThisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+	ThisActor = CursorHit.GetActor();
 	
 	if (LastActor==nullptr)
 	{
