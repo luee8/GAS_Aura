@@ -13,6 +13,7 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+
 USTRUCT()
 struct FEffectProperties
 {
@@ -46,6 +47,12 @@ struct FEffectProperties
 	UPROPERTY()
 	ACharacter* TargetCharacter = nullptr;
 };
+
+// typedef is specific to the FGameplayAttribute() signture,but TStaticFunPtr is generic to any signture chosen
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr;
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<FGameplayAttribute(),FDefaultDelegateUserPolicy>::FFuncPtr;
+
 /**
  * 
  */
@@ -61,6 +68,9 @@ public:
 	
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+	
+	TMap<FGameplayTag,TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+	
 	
 	/*
 	 * Primary Attributes
@@ -131,9 +141,9 @@ public:
    	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,ManaRegeneration);
 	
 	//最大生命值
-	UPROPERTY(BlueprintReadOnly , ReplicatedUsing = OnRep_Mana , Category="Secondary Attributes")
-	FGameplayAttributeData Mana;
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Mana);
+	UPROPERTY(BlueprintReadOnly , ReplicatedUsing = OnRep_MaxHealth , Category="Secondary Attributes")
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,MaxHealth);
 	
 	//最大法力值
 	UPROPERTY(BlueprintReadOnly , ReplicatedUsing = OnRep_MaxMana , Category="Secondary Attributes")
@@ -149,9 +159,9 @@ public:
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Health);
 	
-	UPROPERTY(BlueprintReadOnly , ReplicatedUsing = OnRep_MaxHealth , Category="Vital Attributes")
-	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,MaxHealth);
+	UPROPERTY(BlueprintReadOnly , ReplicatedUsing = OnRep_Mana , Category="Vital Attributes")
+	FGameplayAttributeData Mana;
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet,Mana);
 	
 	
 	UFUNCTION()
