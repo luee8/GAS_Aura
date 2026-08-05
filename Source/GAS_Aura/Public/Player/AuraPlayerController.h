@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 #include "GameFramework/PlayerController.h"
+#include "UI/Widgets/DamageTextComponent.h"
 #include "AuraPlayerController.generated.h"
 
 class USplineComponent;
@@ -25,6 +26,11 @@ class GAS_AURA_API AAuraPlayerController : public APlayerController
 public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
+	
+	//Client : 服务器调用，但在特定客户端上执行
+	//Reliable : 这个RPC调用是可靠的。即网络层会确保这个调用最终一定会到达目标客户端并执行
+	UFUNCTION(Client,Reliable)
+	void ShowDamageNumber(float DamageAmount,ACharacter* TargetCharacter);
 	
 protected:
 	virtual void BeginPlay() override;	
@@ -77,4 +83,7 @@ private:
 	TObjectPtr<USplineComponent> Spline;
 	
 	void AutoRun();
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 };
