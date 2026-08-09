@@ -30,7 +30,7 @@ public:
 	//Client : 服务器调用，但在特定客户端上执行
 	//Reliable : 这个RPC调用是可靠的。即网络层会确保这个调用最终一定会到达目标客户端并执行
 	UFUNCTION(Client,Reliable)
-	void ShowDamageNumber(float DamageAmount,ACharacter* TargetCharacter);
+	void ShowDamageNumber(float DamageAmount,ACharacter* TargetCharacter,bool bBlockedHit, bool bCriticalHit);
 	
 protected:
 	virtual void BeginPlay() override;	

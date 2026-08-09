@@ -35,9 +35,9 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 	}
 }
 
-void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount,ACharacter* TargetCharacter)
+void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount,ACharacter* TargetCharacter,bool bBlockedHit, bool bCriticalHit)
 {
-	if (IsValid(TargetCharacter) && DamageTextComponentClass)
+	if (IsValid(TargetCharacter) && DamageTextComponentClass && IsLocalController())
 	{
 		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter,DamageTextComponentClass);
 		//将组件注册到所属 Actor（this）的组件数组，并完成与游戏世界的初始化 
@@ -46,7 +46,7 @@ void AAuraPlayerController::ShowDamageNumber_Implementation(float DamageAmount,A
 		//先附着再分离 获得角色的变换
 		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(),FAttachmentTransformRules::KeepRelativeTransform);
 		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-		DamageText->SetDamageText(DamageAmount);
+		DamageText->SetDamageText(DamageAmount,bBlockedHit,bCriticalHit);
 	}
 }
 
