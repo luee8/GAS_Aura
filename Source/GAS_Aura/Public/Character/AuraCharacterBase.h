@@ -56,7 +56,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 	//创建一个武器的骨骼网格体
-	UPROPERTY(EditAnywhere, Category="Combat")
+	UPROPERTY(EditAnywhere,BlueprintReadOnly ,Category="Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 	
 	UPROPERTY(EditAnywhere,Category="Combat")
