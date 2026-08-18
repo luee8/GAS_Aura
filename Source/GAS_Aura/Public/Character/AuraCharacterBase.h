@@ -8,6 +8,7 @@
 #include "Interaction/CombatInterface.h"
 #include "AuraCharacterBase.generated.h"
 
+class UNiagaraSystem;
 class UGameplayAbility;
 class UGameplayEffect;
 class UAbilitySystemComponent;
@@ -42,6 +43,10 @@ public:
 	
 	virtual TArray<FTaggedMontage> GetAttackMontage_Implementation() override;
 	
+	virtual UNiagaraSystem* GetBloodEffect_Implementation() override;
+	
+	virtual FTaggedMontage GetTaggedMontage_Implementation(const FGameplayTag& MontageTag) override;
+	
 	/** end Combat Interface */
 	
 	//多播PRC
@@ -67,6 +72,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere,Category="Combat")
 	FName RightHandSocketName;
+	
+	UPROPERTY(EditAnywhere,Category="Combat")
+	FName TailSocketName;
 	
 	bool bDead = false;
 	
@@ -108,6 +116,12 @@ protected:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TObjectPtr<UMaterialInstance> WeaponDissolveMaterialInstance; 
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Combat")
+	UNiagaraSystem* BloodEffect;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Combat")
+	USoundBase* DeadSound;
 	
 private:
 	UPROPERTY(EditAnywhere,Category="Abilities")
