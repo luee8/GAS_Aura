@@ -47,6 +47,10 @@ public:
 	
 	virtual FTaggedMontage GetTaggedMontage_Implementation(const FGameplayTag& MontageTag) override;
 	
+	virtual int32 GetMinionCount_Implementation() override;
+	
+	virtual void IncremeneMinionCount_Implementation(int32 Amount) override;
+	
 	/** end Combat Interface */
 	
 	//多播PRC
@@ -122,6 +126,9 @@ protected:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Combat")
 	USoundBase* DeadSound;
+	
+	/* Minions */
+	int32 MinionCount = 0;
 	
 private:
 	UPROPERTY(EditAnywhere,Category="Abilities")
