@@ -51,6 +51,8 @@ public:
 	
 	virtual void IncremeneMinionCount_Implementation(int32 Amount) override;
 	
+	virtual ECharacterClass GetCharacterClass_Implementation() override;
+	
 	/** end Combat Interface */
 	
 	//多播PRC
@@ -129,6 +131,9 @@ protected:
 	
 	/* Minions */
 	int32 MinionCount = 0;
+	
+	UPROPERTY(EditAnywhere ,  BlueprintReadOnly ,Category="Character Class Defaults")
+	ECharacterClass CharacterClass = ECharacterClass::Warrior;
 	
 private:
 	UPROPERTY(EditAnywhere,Category="Abilities")
