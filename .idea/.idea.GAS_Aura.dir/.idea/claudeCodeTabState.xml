@@ -6,6 +6,7 @@
         <entry key="0">
           <value>
             <TabSessionState>
+              <option name="projectPath" value="C:\MyFolder\epic\GAS_Aura" />
               <option name="provider" value="claude" />
               <option name="sessionId" value="6c5b9fe7-7564-4627-b4e0-ee40688af327" />
               <option name="cwd" value="$PROJECT_DIR$" />
