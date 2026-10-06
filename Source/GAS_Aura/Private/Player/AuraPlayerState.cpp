@@ -25,6 +25,8 @@
  	
  	DOREPLIFETIME(AAuraPlayerState,Level);
  	DOREPLIFETIME(AAuraPlayerState,XP);
+ 	DOREPLIFETIME(AAuraPlayerState,AttributePoints);
+ 	DOREPLIFETIME(AAuraPlayerState,SpellPoints);
  }
 
  UAbilitySystemComponent* AAuraPlayerState::GetAbilitySystemComponent() const
@@ -56,6 +58,30 @@
  	OnXPChangedDelegate.Broadcast(XP);
  }
 
+ void AAuraPlayerState::AddToAttributePoints(int32 InAttributePoints)
+ {
+ 	AttributePoints+=InAttributePoints;
+ 	OnAttributePointsChangedDelegate.Broadcast(AttributePoints);
+ }
+
+ void AAuraPlayerState::SetAttributePoints(int32 InAttributePoints)
+ {
+ 	AttributePoints=InAttributePoints;
+ 	OnAttributePointsChangedDelegate.Broadcast(AttributePoints);
+ }
+
+ void AAuraPlayerState::AddToSpellPoints(int32 InSpellPoints)
+ {
+ 	SpellPoints+=InSpellPoints;
+ 	OnSpellPointsChangedDelegate.Broadcast(SpellPoints);
+ }
+
+ void AAuraPlayerState::SetSpellPoints(int32 InSpellPoints)
+ {
+ 	SpellPoints=InSpellPoints;
+ 	OnSpellPointsChangedDelegate.Broadcast(SpellPoints);
+ }
+
  void AAuraPlayerState::OnRep_Level(int32 OldLevel)
  {
  	// 在 客户端 广播 ，更新 客户端 持有的 HUD
@@ -66,4 +92,14 @@
  {
  	// 在 客户端 广播 ，更新 客户端 持有的 HUD
  	OnXPChangedDelegate.Broadcast(XP);
+ }
+
+ void AAuraPlayerState::OnRep_AttributePoints(int32 OldAttributePoints)
+ {
+ 	OnAttributePointsChangedDelegate.Broadcast(AttributePoints);
+ }
+
+ void AAuraPlayerState::OnRep_SpellPoints(int32 OldSpellPoints)
+ {
+ 	OnSpellPointsChangedDelegate.Broadcast(SpellPoints);
  }
