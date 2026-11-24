@@ -8,10 +8,13 @@
             <TabSessionState>
               <option name="projectPath" value="C:\MyFolder\epic\GAS_Aura" />
               <option name="provider" value="claude" />
-              <option name="sessionId" value="6c5b9fe7-7564-4627-b4e0-ee40688af327" />
-              <option name="cwd" value="$PROJECT_DIR$" />
+              <option name="sessionId" value="4d912212-1367-4aa7-99b9-00acbeabcf4e" />
+              <option name="cwd" value="C:\MyFolder\epic\GAS_Aura" />
               <option name="model" value="claude-haiku-4-5" />
               <option name="permissionMode" value="default" />
+              <option name="claudeSupplierId" value="3c70b8c3-7c17-41a6-a10c-7a7d7ba16f42" />
+              <option name="codexSupplierId" value="__session_supplier_unavailable__" />
+              <option name="ompApprovalMode" value="" />
             </TabSessionState>
           </value>
         </entry>
